@@ -27,52 +27,34 @@ h1{
     animation-delay: 0.2s;
 }
 
-nav{
-    margin-top: 10px;
-    align-items: center;
+main{
+    margin: 10px;
     opacity: 0;
     animation: fadeIn 0.5s forwards;
     animation-delay: 0.5s;
 }
 
-nav ul{
-    background-color: transparent;
-    list-style-type: none;
-    overflow: hidden;
+main p{
+    padding: 10px;
+    text-align: justify;
+    border: 2px solid white;
+    border-radius: 20px;
+    backdrop-filter: blur(200px);
 }
 
-nav li{
-    float: right;
-}
-
-nav a{
-    display: block;
-    padding: 15px;
+main a{
     text-decoration: none;
     color: #fff;
-    text-align: center;
-}
-
-nav a:hover{
-    text-decoration: underline;
-}
-
-main{
-    border-radius: 20px;
-    margin: 10px;
-    border: 2px solid white;
-    backdrop-filter: blur(200px);
     opacity: 0;
     animation: fadeIn 0.5s forwards;
     animation-delay: 1s;
 }
 
-main h2{
-    text-align: center;
-    margin: 10px 0 0 10px;
+.refBack{
+    display: inline-block;
+    margin: 10px 0 0 50%;
 }
 
-main p{
-    padding: 10px;
-    text-align: justify;
+main a:hover{
+    text-decoration: underline;
 }
