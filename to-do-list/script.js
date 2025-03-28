@@ -1,21 +1,37 @@
-let textField = document.getElementById("textField");
-let addButton = document.getElementById("addButton");
-let clearButton = document.getElementById("clearButton");
+const newTaskField = document.getElementById("newTask")
+const addTaskButton = document.getElementById("addTask")
+const taskList = document.getElementById("taskList")
 
-let text;
+add = () => {
+    let taskText = newTaskField.value.trim()
+    if (taskText === '') return
+    let newTask = document.createElement('li')
+    newTask.innerHTML = `
+    <input type="checkbox">
+    <span class="task-text">${taskText}</span>
+    <button class="edit-button">Редактировать</button>
+    <button class="delete-button">Удалить</button>
+    `
+    taskList.appendChild(newTask)
+    newTaskField.value = ''
 
-addButton.onclick = () => {
-    text = textField.value;
-    if(text == '') 
-        return;
-    let paragraph = document.createElement('p');
-    document.body.appendChild(paragraph)
-    paragraph.textContent = text;
-    text = '';
+    let removeButton = newTask.querySelector('.delete-button')
+    removeButton.addEventListener('click', () => remove(newTask))
+
+    let editButton = newTask.querySelector('.edit-button')
+    editButton.addEventListener('click', () => edit(newTask))
+
 }
 
-clearButton.onclick = () => {
-    text = '';
-    textField.value = text;
-    document.querySelectorAll('p').forEach(paragraph => paragraph.remove());
+edit = (listItem) => {
+    let inputField = document.createElement('input')
+    inputField.type = "text";
+    let taskSpan = listItem.querySelector('.task-text')
+    taskSpan.appendChild(inputField)
 }
+
+remove = (listItem) => {
+    listItem.remove()
+}
+
+addTaskButton.addEventListener('click', add)
