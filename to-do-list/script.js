@@ -2,22 +2,20 @@ const newTaskField = document.getElementById("newTask")
 const addTaskButton = document.getElementById("addTask")
 const taskList = document.getElementById("taskList")
 
-const createTask = (taskText) =>
-    `
+const createTask = (taskText) => `
     <div class="task">
         <input type="checkbox">
         <span class="task-text">${taskText}</span>
-        <br>
         <div class="control-buttons">
             <button class="edit-button">
                 <i class='bx bx-edit-alt'></i>
             </button>
             <button class="delete-button">
-                <i class='bx bx-minus' ></i>
+                <i class='bx bx-trash'></i>
             </button>
         </div>
     </div>
-    `
+`;
 
 
 const createEdit = (currentText = '') =>

@@ -18,33 +18,43 @@ body{
     border: 2px solid white;
     border-radius: 20px;
     padding: 25px;
+    width: 90%;
+    max-width: 75%;
+    margin: 20px auto;
 }
 
 .input-container{
-    width: 100vh;
-    text-align: center;
+    display: block;
+    margin-bottom: 20px;
+    text-align: start;
 }
 
 .input-container input{
-    text-align: left;
-    width: 100%;
+    flex-grow: 1;
     height: 50px;
-    padding-left: 10px;
+    padding: 0 15px;
+    border: 2px solid black;
+    border-radius: 50px;
 }
 
 .input-container input::placeholder{
-    font-style: italic;
-    color: #000;
+    padding: 0;
+    list-style-position: inside;
+}
+
+#taskList {
+    padding: 0;
+    list-style-position: inside;
 }
 
 #newTask{
     border: 2px solid black;
     border-radius: 50px;
+    width: 70%;
 }
 
 #addTask{
     background-color: #4CAF50;
-    margin-top: 5%;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -59,19 +69,18 @@ ol{
     color: white;
 }
 
+ol li {
+    border: 2px solid white;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px;
+    overflow: hidden;
+}
+
 ol button{
     border-radius: 50%;
     width: 30px;
     height: 30px;
-}
-
-ol li{
-    border: 2px solid white;
-    border-radius: 20px;
-    margin-top: 10px;
-}
-ol::marker{
-    font-weight: bold;
 }
 
 ol input{
@@ -79,16 +88,31 @@ ol input{
     border-radius: 50px;
 }
 
-ol .task{
-    margin: 10px;
+.task {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
 }
 
-ol .edit-task{
-    margin: 10px;
+.task-text {
+    flex: 1;
+    min-width: 0;
+    background-color: #000;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    word-break: break-word;
 }
 
-ol .control-buttons{
-    margin-left: 90%;
+.control-buttons {
+    display: flex;
+    gap: 5px;
+    margin-left: auto;
+}
+
+button i {
+    font-size: 16px;
 }
 
 ol .edit-button{
