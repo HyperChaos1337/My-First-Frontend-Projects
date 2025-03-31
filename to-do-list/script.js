@@ -15,13 +15,13 @@ const createTask = (taskText) => `
             </button>
         </div>
     </div>
-`;
+`
 
 
 const createEdit = (currentText = '') =>
     `
     <div class="edit-task">
-        <input type="text" class="edit-input" value="${currentText}">
+        <textarea class="edit-input">${currentText}</textarea>
         <br>
         <div class="control-buttons">
             <button class="confirm-button">
@@ -46,6 +46,11 @@ add = () => {
 
     setup(newTask)
 
+}
+
+counter = () => {
+    listCount = document.querySelectorAll('ol > li').length;
+    console.log('Total tasks: ' + listCount)
 }
 
 setup = (taskElement) => {
@@ -84,3 +89,4 @@ cancel = (listItem, text) => {
 }
 
 addTaskButton.addEventListener('click', add)
+addTaskButton.addEventListener('click', counter)

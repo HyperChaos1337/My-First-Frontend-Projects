@@ -19,7 +19,7 @@ body{
     border-radius: 20px;
     padding: 25px;
     width: 90%;
-    max-width: 75%;
+    max-width: 95%;
     margin: 20px auto;
 }
 
@@ -48,9 +48,17 @@ body{
 }
 
 #newTask{
-    border: 2px solid black;
-    border-radius: 50px;
-    width: 70%;
+    resize: none;
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    overflow-y: scroll;
+}
+
+#newTask:hover{
+    border: 2px solid white;
 }
 
 #addTask{
@@ -58,6 +66,16 @@ body{
     border-radius: 50%;
     width: 30px;
     height: 30px;
+}
+
+.edit-input{
+    resize: none;
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    overflow-y: scroll;
 }
 
 h1{
