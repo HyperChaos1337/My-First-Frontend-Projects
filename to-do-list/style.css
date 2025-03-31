@@ -148,3 +148,15 @@ ol .confirm-button{
 ol .cancel-button{
     background-color: orange;
 }
+
+#page-manager{
+    display: flex;
+    justify-content: center;
+}
+
+#page-manager button{
+    width: 35px;
+    height: 35px;
+    margin: 10px;
+    border-radius: 50%;
+}

@@ -2,6 +2,8 @@ const newTaskField = document.getElementById("newTask")
 const addTaskButton = document.getElementById("addTask")
 const taskList = document.getElementById("taskList")
 
+let pages = 0
+
 const createTask = (taskText) => `
     <div class="task">
         <input type="checkbox">
@@ -50,7 +52,7 @@ add = () => {
 
 counter = () => {
     listCount = document.querySelectorAll('ol > li').length;
-    console.log('Total tasks: ' + listCount)
+    if(listCount % 10 == 1) pages++;
 }
 
 setup = (taskElement) => {
