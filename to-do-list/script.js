@@ -3,6 +3,7 @@ const addTaskButton = document.getElementById("addTask")
 const taskList = document.getElementById("taskList")
 
 let pages = 0
+let pagesPerPage = 10
 
 const createTask = (taskText) => `
     <div class="task">
@@ -51,8 +52,16 @@ add = () => {
 }
 
 counter = () => {
+    const rightButton = document.querySelector('bx bx-chevron-right')
+    const navBar = document.getElementById('page-manager')
     listCount = document.querySelectorAll('ol > li').length;
-    if(listCount % 10 == 1) pages++;
+    if(listCount % pagesPerPage == 1){
+        pages++;
+        const pageButton = document.createElement('button')
+        pageButton.textContent = pages;
+        navBar.insertBefore(pageButton, rightButton)
+    } 
+
 }
 
 setup = (taskElement) => {
