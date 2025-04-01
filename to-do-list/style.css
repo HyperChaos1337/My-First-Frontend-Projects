@@ -76,6 +76,7 @@ body{
 
 button{
     border: transparent;
+    cursor: pointer;
 }
 
 button i {
@@ -178,6 +179,10 @@ ol li {
 }
 
 #page-manager{
+    display: none;
+}
+
+#page-manager.pages{
     display: flex;
     justify-content: center;
     gap: 10px;

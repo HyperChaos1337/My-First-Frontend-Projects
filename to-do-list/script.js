@@ -3,7 +3,7 @@ const addTaskButton = document.getElementById("addTask")
 const taskList = document.getElementById("taskList")
 
 let pages = 0
-let pagesPerPage = 10
+let tasksPerPage = 5
 
 const createTask = (taskText) => `
     <div class="task">
@@ -52,16 +52,27 @@ add = () => {
 }
 
 counter = () => {
-    const rightButton = document.getElementById('toggle-right')
     const navBar = document.getElementById('page-manager')
+    const pageContainer = document.getElementById('page-count')
     listCount = document.querySelectorAll('ol > li').length;
-    if(listCount % pagesPerPage == 1){
+    if(listCount % tasksPerPage == 1){
         pages++;
         const pageButton = document.createElement('button')
         pageButton.textContent = pages;
-        navBar.insertBefore(pageButton, rightButton)
-    } 
+        pageContainer.appendChild(pageButton)
+    }
+    if(pages > 0) navBar.className = 'pages'
+}
 
+check = (navBar) => {
+    listCount = document.querySelectorAll('ol > li').length;
+    const pagesContainer = document.getElementById('page-count')
+    if (listCount == 0)
+        navBar.removeAttribute('class')
+    if(listCount % tasksPerPage == 0){
+        pages--;
+        pagesContainer.removeChild(pagesContainer.lastElementChild)
+    }
 }
 
 setup = (taskElement) => {
@@ -85,6 +96,7 @@ edit = (listItem) => {
 
 remove = (listItem) => {
     listItem.remove()
+    check(document.getElementById('page-manager'))
 }
 
 save = (listItem, text) => {
