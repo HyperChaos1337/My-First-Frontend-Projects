@@ -52,7 +52,7 @@ add = () => {
 }
 
 counter = () => {
-    const rightButton = document.querySelector('bx bx-chevron-right')
+    const rightButton = document.getElementById('toggle-right')
     const navBar = document.getElementById('page-manager')
     listCount = document.querySelectorAll('ol > li').length;
     if(listCount % pagesPerPage == 1){
