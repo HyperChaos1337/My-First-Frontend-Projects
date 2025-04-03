@@ -26,6 +26,35 @@ body{
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes typeWriter{
+    from{
+        width: 0%;
+    }
+    to{
+        width: 50%;
+    }
+}
+
+@keyframes blink {
+    from {
+        border-color: black;
+    }
+
+    to {
+        border-color: transparent;
+    }
 }
 
 .input-container{
@@ -122,6 +151,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    animation: fadeIn 1s forwards;
 }
 
 h1{
@@ -145,6 +175,7 @@ ol li {
     overflow: hidden;
     background: rgba(0, 20, 0, 0.3);
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    animation: fadeIn 1s forwards;
 }
 
 .task {
@@ -152,6 +183,7 @@ ol li {
     flex-wrap: wrap;
     align-items: center;
     gap: 15px;
+    animation: fadeIn 1s forwards;
 }
 
 .task-text {

@@ -86,7 +86,7 @@ counter = () => {
 check = (navBar) => {
     const listCount = document.querySelectorAll('ol > li').length
     const pagesContainer = document.getElementById('page-count')
-    if (listCount == 0)
+    if (listCount == tasksPerPage)
         navBar.style.display = 'none'
     if(listCount % tasksPerPage == 0){
         pages--;
