@@ -165,6 +165,7 @@ h1{
 ol{
     color: #0f0;
     width: 100%;
+    list-style: none;
 }
 
 ol li {
@@ -201,8 +202,11 @@ ol li {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
-    width: 100%;
-    margin-top: 15px;
+    /* width: 100%; */
+    /* margin-top: 15px; */
+    /* width: 100%; */
+    align-items: center;
+    margin: 0;
 }
 
 .edit-button, 
@@ -238,6 +242,10 @@ ol li {
 .cancel-button{
     background-color: #ff8000;
     box-shadow: 0 0 10px rgba(255, 128, 0, 0.5);
+}
+
+i {
+    font-size: large;
 }
 
 #page-manager{
@@ -281,7 +289,6 @@ ol li {
     padding: 10px;
 }
 
-/* Неоновый эффект для чекбоксов */
 input[type="checkbox"] {
     appearance: none;
     width: 20px;

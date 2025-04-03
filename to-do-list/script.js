@@ -6,6 +6,8 @@ let pages = 0
 let tasksPerPage = 5
 let currentPage = 1
 
+const allTasks = document.querySelectorAll('ol > li')
+
 const createTask = (taskText) => `
     <div class="task">
         <input type="checkbox">
@@ -51,15 +53,15 @@ add = () => {
     setup(newTask)
     counter()
     showPage(pages)
+    //  console.log(pages)
 }
 
 counter = () => {
 
     const navBar = document.getElementById('page-manager')
     const pageContainer = document.getElementById('page-count')
-    const listCount = document.querySelectorAll('ol > li').length
 
-    const neededPages = Math.ceil(listCount / tasksPerPage)
+    const neededPages = Math.ceil(allTasks.length / tasksPerPage)
     
     if (neededPages !== pages) {
         pages = neededPages
@@ -133,11 +135,10 @@ cancel = (listItem, text) => {
 }
 
 showPage = (pageNumber) => {
-    const tasks = document.querySelectorAll('ol > li')
     const startTask = (pageNumber - 1) * tasksPerPage
     const endTask = startTask + tasksPerPage
 
-    tasks.forEach((task, index) => {
+    allTasks.forEach((task, index) => {
         task.style.display = (index >= startTask && index < endTask) ? 'block' : 'none'
     });
     
