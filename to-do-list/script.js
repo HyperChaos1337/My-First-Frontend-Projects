@@ -23,7 +23,6 @@ const createTask = (taskText) => `
     </div>
 `
 
-
 const createEdit = (currentText = '') =>
     `
     <div class="edit-task">
@@ -41,13 +40,10 @@ const createEdit = (currentText = '') =>
 `
 
 getAllTasks = () => {
-
     return document.querySelectorAll('ol > li')
-
 }
 
 add = () => {
-
     let taskText = newTaskField.value.trim()
     if (taskText === '') return
 
@@ -59,28 +55,22 @@ add = () => {
     setup(newTask)
     createPage()
     showPage(pages)
-
 }
 
 updatePagination = navBar => {
-
     navBar.style.display = pages > 1 ? 'flex' : 'none'
-
 }
 
 removePage = () => {
-
     if(getAllTasks().length % tasksPerPage == 0){
         pages--;
         pagesContainer.removeChild(pagesContainer.lastElementChild)
     }
 
     updatePagination(navBar)
-
 }
 
 createPage = () => {
-
     const neededPages = Math.ceil(getAllTasks().length / tasksPerPage)
 
     if (neededPages !== pages) {
@@ -98,11 +88,9 @@ createPage = () => {
     }
 
     updatePagination(navBar)
-
 }
 
 setup = taskElement => {
-
     taskElement.querySelector('.delete-button').addEventListener('click', () => remove(taskElement))
     taskElement.querySelector('.edit-button').addEventListener('click', () => edit(taskElement))
     
@@ -111,46 +99,36 @@ setup = taskElement => {
         const taskSpan = taskElement.querySelector('.task-text')
         taskSpan.style.textDecoration = checkbox.checked ? 'line-through' : 'none'
     });
-
 }
 
 edit = listItem => {
-
     const currentText = listItem.querySelector('.task-text').textContent
     listItem.innerHTML = createEdit(currentText)
     
     listItem.querySelector('.confirm-button').addEventListener('click', () => save(listItem, currentText))
     listItem.querySelector('.cancel-button').addEventListener('click', () => cancel(listItem, currentText))
-
 }
 
 remove = listItem => {
-
     listItem.remove()
     const listCount = document.querySelectorAll('ol > li').length
     showPage(Math.ceil(listCount / tasksPerPage))
     removePage()
-
 }
 
 save = (listItem, text) => {
-
     let newTextField = listItem.querySelector('.edit-input')
     let newText = newTextField.value.trim()
     listItem.innerHTML = createTask(newText || text)
     setup(listItem)
-
 }
 
 cancel = (listItem, text) => {
-
     listItem.innerHTML = createTask(text)
     setup(listItem)
-
 }
 
 showPage = pageNumber => {
-
     const startTask = (pageNumber - 1) * tasksPerPage
     const endTask = startTask + tasksPerPage
 
@@ -159,11 +137,9 @@ showPage = pageNumber => {
     });
     
     currentPage = pageNumber
-
 }
 
 updatePaginationButtons = () => {
-
     document.getElementById('toggle-left').disabled = currentPage === 1
     document.getElementById('toggle-right').disabled = currentPage === 1
     document.getElementById('toggle-first').disabled = currentPage === pages
@@ -172,7 +148,6 @@ updatePaginationButtons = () => {
     document.querySelectorAll('#page-count button').forEach((btn, index) => {
         btn.classList.toggle('active', index + 1 === currentPage);
     });
-
 }
 
 addTaskButton.addEventListener('click', add)
