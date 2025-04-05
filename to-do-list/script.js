@@ -1,12 +1,12 @@
 const newTaskField = document.getElementById("newTask")
 const addTaskButton = document.getElementById("addTask")
 const taskList = document.getElementById("taskList")
+const navBar = document.getElementById('page-manager')
+const pagesContainer = document.getElementById('page-count')
 
 let pages = 0
 let tasksPerPage = 5
 let currentPage = 1
-
-const allTasks = document.querySelectorAll('ol > li')
 
 const createTask = (taskText) => `
     <div class="task">
@@ -40,6 +40,9 @@ const createEdit = (currentText = '') =>
     </div>
 `
 
+getAllTasks = () => {
+    return document.querySelectorAll('ol > li')
+}
 
 add = () => {
     let taskText = newTaskField.value.trim()
@@ -53,26 +56,23 @@ add = () => {
     setup(newTask)
     counter()
     showPage(pages)
-    //  console.log(pages)
+    updatePagination(navBar)
 }
 
 counter = () => {
 
-    const navBar = document.getElementById('page-manager')
-    const pageContainer = document.getElementById('page-count')
-
-    const neededPages = Math.ceil(allTasks.length / tasksPerPage)
+    const neededPages = Math.ceil(getAllTasks().length / tasksPerPage)
     
     if (neededPages !== pages) {
         pages = neededPages
         
-        pageContainer.innerHTML = ''
+        pagesContainer.innerHTML = ''
         
         for (let i = 1; i <= pages; i++) {
             const pageButton = document.createElement('button')
             pageButton.textContent = i
             pageButton.addEventListener('click', () => showPage(i))
-            pageContainer.appendChild(pageButton)
+            pagesContainer.appendChild(pageButton)
         }
 
         if (neededPages > pages) {
@@ -80,23 +80,20 @@ counter = () => {
         }
 
     }
-    navBar.style.display = pages > 1 ? 'flex' : 'none'
+    
     showPage(currentPage);
 
 }
 
-check = (navBar) => {
-    const listCount = document.querySelectorAll('ol > li').length
-    const pagesContainer = document.getElementById('page-count')
-    if (listCount == tasksPerPage)
-        navBar.style.display = 'none'
-    if(listCount % tasksPerPage == 0){
+updatePagination = navBar => {
+    if(getAllTasks().length % tasksPerPage == 0){
         pages--;
         pagesContainer.removeChild(pagesContainer.lastElementChild)
     }
+    navBar.style.display = pages > 1 ? 'flex' : 'none'
 }
 
-setup = (taskElement) => {
+setup = taskElement => {
     taskElement.querySelector('.delete-button').addEventListener('click', () => remove(taskElement))
     taskElement.querySelector('.edit-button').addEventListener('click', () => edit(taskElement))
     
@@ -107,7 +104,7 @@ setup = (taskElement) => {
     });
 }
 
-edit = (listItem) => {
+edit = listItem => {
     const currentText = listItem.querySelector('.task-text').textContent
     listItem.innerHTML = createEdit(currentText)
     
@@ -115,11 +112,11 @@ edit = (listItem) => {
     listItem.querySelector('.cancel-button').addEventListener('click', () => cancel(listItem, currentText))
 }
 
-remove = (listItem) => {
+remove = listItem => {
     listItem.remove()
-    check(document.getElementById('page-manager'))
     const listCount = document.querySelectorAll('ol > li').length
     showPage(Math.ceil(listCount / tasksPerPage))
+    updatePagination(navBar)
 }
 
 save = (listItem, text) => {
@@ -134,11 +131,11 @@ cancel = (listItem, text) => {
     setup(listItem)
 }
 
-showPage = (pageNumber) => {
+showPage = pageNumber => {
     const startTask = (pageNumber - 1) * tasksPerPage
     const endTask = startTask + tasksPerPage
 
-    allTasks.forEach((task, index) => {
+    getAllTasks().forEach((task, index) => {
         task.style.display = (index >= startTask && index < endTask) ? 'block' : 'none'
     });
     
