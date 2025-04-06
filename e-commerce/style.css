@@ -84,10 +84,14 @@ li:hover{
     border-radius: 10px;
     padding: 10px;
     display: grid;
+    grid-area: cards;
+}
+
+.cards__hot-drinks{
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(0, auto);
-    grid-area: cards;
 }
 
 .product-card {
