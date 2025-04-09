@@ -1,17 +1,26 @@
 const menu = document.querySelectorAll('#aside-bar ol > li')
 const pages = document.querySelectorAll('.cards__type')
 
-let currentPage = 1
-
 menu.forEach((element, index) => {
     element.addEventListener('click', () => {
-        currentPage = index + 1
-        showPage()
-    })
-})
+        showPage(index);
+    });
+});
 
-showPage = () => {
-    pages.forEach((element, index) => {
-        element.style.display = index + 1 === currentPage ? 'grid' : 'none'
-    })
+showPage = index => {
+    menu.forEach(item => item.classList.remove('active'));
+    
+    menu[index].classList.add('active');
+    
+    pages.forEach(page => {
+        setTimeout(() => {
+            page.style.display = 'none';
+        }, 300);
+    });
+    
+    setTimeout(() => {
+        pages[index].style.display = 'grid';
+    }, 300);
 }
+
+showPage(0);
