@@ -15,6 +15,17 @@
     }
 }
 
+@keyframes fadeOut{
+    from {
+        opacity: 1;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(0);
+    }
+}
+
 body{
     height: 100vh;
 }
@@ -73,6 +84,26 @@ body{
 
 #additional-buttons > button i{
     font-size: 24px;
+}
+
+#cart-container{
+    display: none;
+    position: absolute;
+    top: 12%;
+    right: 0.5%;
+    width: 700px;
+    height: 350px;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    z-index: 3;
+}
+
+#cart-container.active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 #aside-bar ol{
