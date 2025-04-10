@@ -2,6 +2,7 @@ const menu = document.querySelectorAll('#aside-bar ol > li');
 const pages = document.querySelectorAll('.cards__type');
 const cartButton = document.getElementById('cart-button');
 const cartContainer = document.getElementById('cart-container');
+const cartCounter = document.getElementById('data-count')
 
 const cartList = document.createElement('ol');
 cartContainer.appendChild(cartList);
@@ -21,13 +22,14 @@ document.querySelectorAll('.product-card').forEach(card => {
     
     minusBtn.addEventListener('click', () => updateCart(card, -1));
     plusBtn.addEventListener('click', () => updateCart(card, 1));
+    
 });
 
 function updateCart(card, change) {
     const productId = card.querySelector('h2').textContent;
     const productImg = card.querySelector('.product-image').src;
     const productPrice = parseFloat(card.querySelector('.price').textContent.replace('$', ''));
-    
+
     let item = cart.find(item => item.id === productId);
     let newQuantity = (item ? item.quantity : 0) + change;
     
@@ -53,18 +55,24 @@ function updateCart(card, change) {
     updateCartDisplay();
 }
 
+function changeCart(){
+    
+}
+
 function updateQuantityDisplay(card, quantity) {
     card.querySelector('.quantity').textContent = quantity;
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    if(totalItems > 0)
-        cartButton.setAttribute('data-count', totalItems);
-    else if (totalItems === 0) cartButton.removeAttribute('data-count')
+    cartCounter.textContent = totalItems;
+    cartCounter.style.display = totalItems === 0 ? 'none' : 'flex';
 }
 
 function updateCartDisplay() {
     cartList.innerHTML = '';
     
     if (cart.length === 0) {
+        const emptyMsg = document.createElement('li');
+        emptyMsg.textContent = 'Your cart is empty';
+        cartList.appendChild(emptyMsg);
         return;
     }
     
@@ -73,19 +81,32 @@ function updateCartDisplay() {
     cart.forEach(item => {
         const cartItem = document.createElement('li');
         cartItem.className = 'cart-item';
-        
+
         cartItem.innerHTML = `
             <img src="${item.img}" alt="${item.name}" class="cart-item-image">
             <div class="cart-item-info">
                 <span class="cart-item-name">${item.name}</span>
                 <span class="cart-item-price">$${item.price.toFixed(2)} × ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</span>
+                <div class="add-remove">
+                        <button>
+                            <i class='bx bx-minus'></i>
+                        </button>
+                        <button>
+                            <i class='bx bx-plus'></i>
+                        </button>
+                        <button>
+                            <i class='bx bxs-trash'></i>
+                        </button>
+                    </div>
             </div>
         `;
-        
+
         cartList.appendChild(cartItem);
+
         total += item.price * item.quantity;
     });
-    
+
+
     const totalElement = document.createElement('li');
     totalElement.className = 'cart-total';
     totalElement.textContent = `Total: $${total.toFixed(2)}`;
