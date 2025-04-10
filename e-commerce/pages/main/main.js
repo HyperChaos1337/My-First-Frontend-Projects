@@ -55,15 +55,16 @@ function updateCart(card, change) {
 
 function updateQuantityDisplay(card, quantity) {
     card.querySelector('.quantity').textContent = quantity;
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    if(totalItems > 0)
+        cartButton.setAttribute('data-count', totalItems);
+    else if (totalItems === 0) cartButton.removeAttribute('data-count')
 }
 
 function updateCartDisplay() {
     cartList.innerHTML = '';
     
     if (cart.length === 0) {
-        const emptyMsg = document.createElement('li');
-        emptyMsg.textContent = 'Your cart is empty';
-        cartList.appendChild(emptyMsg);
         return;
     }
     
@@ -89,8 +90,8 @@ function updateCartDisplay() {
     totalElement.className = 'cart-total';
     totalElement.textContent = `Total: $${total.toFixed(2)}`;
     cartList.appendChild(totalElement);
-}
 
+}
 
 menu.forEach((element, index) => {
     element.addEventListener('click', () => {
