@@ -29,6 +29,11 @@ body{
     height: 100vh;
     background-color: var(--mint-light);
     color: var(--text-dark);
+    font-family: 'Dancing Script', cursive;
+}
+
+header, footer{
+    padding: 10px;
 }
 
 #site-header, #site-footer, #nav-bar, #aside-bar, #additional-buttons {
@@ -213,8 +218,9 @@ button i{
 }
 
 .cards--home{
-    color: white;
-    border: 2px solid white;
+    border: 1px solid var(--mint-dark);
+    color: var(--text-dark);
+    background-color: var(--white);
     border-radius: 10px;
     float: left;
     animation: fadeIn 0.5s ease-out forwards;
@@ -274,9 +280,10 @@ button i{
     justify-content: center;
 }
 
-.card-description p {
+.card-description, #aside-content p{
     margin: 0;
     text-align: center;
+    font-style: italic;
 }
 
 .price {
@@ -445,12 +452,12 @@ button i{
     position: absolute;
     text-align: center;
     top: -150%;
-    padding-top: 10px;
+    padding-top: 5px;
     left: 0;
     width: 100%;
     height: 115%;
-    background: var(--mint-dark);
-    color: white;
+    background: var(--white);
+    color: var(--text-dark);
     transition: top 0.3s ease;
     border-radius: 5px 5px 0 0;
     z-index: 1400;
@@ -461,12 +468,13 @@ button i{
 }
 
 button, .nav-link a, #aside-bar ol > li {
+    font-family: 'Dancing Script', cursive;
     transition: all 0.3s ease;
 }
 
 .nav-link a:hover {
     background: var(--mint-medium);
-    color: var(--white);
+    color: var(--text-dark);
 }
 
 #aside-bar ol > li:hover {
