@@ -1,29 +1,53 @@
 const menu = document.querySelectorAll('#aside-bar ol > li');
 const pages = document.querySelectorAll('.cards__type');
+const langButton = document.getElementById('lang-button');
 const cartButton = document.getElementById('cart-button');
 const cartContainer = document.getElementById('cart-container');
-const cartCounter = document.getElementById('data-count')
+const cartCounter = document.getElementById('data-count');
+const alertBody = document.getElementById('alert-body')
+const alertWindow = document.getElementById('alert-window')
+const closeAlertButton = document.getElementById('close-alert')
 
 const cartList = document.createElement('ol');
 cartContainer.appendChild(cartList);
 
 let cart = [];
 
-document.querySelectorAll('.product-card').forEach(card => {
-    const quantityDisplay = document.createElement('span');
-    quantityDisplay.className = 'quantity';
-    quantityDisplay.textContent = '0';
-    
-    const addRemoveDiv = card.querySelector('.add-remove');
-    addRemoveDiv.insertBefore(quantityDisplay, addRemoveDiv.children[1]);
-    
-    const minusBtn = card.querySelector('.add-remove button:first-child');
-    const plusBtn = card.querySelector('.add-remove button:last-child');
-    
-    minusBtn.addEventListener('click', () => updateCart(card, -1));
-    plusBtn.addEventListener('click', () => updateCart(card, 1));
-    
-});
+const asideContent = {
+    home: {
+        img: "/e-commerce/assets/home-background.jpg",
+        text: "Welcome to our cafe!"
+    },
+    hotDrinks: {
+        img: "/e-commerce/assets/hot-drinks-page.jpg",
+        text: "Our best hot drinks"
+    },
+    coldDrinks: {
+        img: "/e-commerce/assets/cold-drinks-page.jpg",
+        text: "Our best cold drinks"
+    },
+    dishes: {
+        img: "/e-commerce/assets/dishes-page.jpg",
+        text: "Our best dishes"
+    }
+};
+
+function initProductCards() {
+    document.querySelectorAll('.product-card').forEach(card => {
+        const quantityDisplay = document.createElement('span');
+        quantityDisplay.className = 'quantity';
+        quantityDisplay.textContent = '0';
+        
+        const addRemoveDiv = card.querySelector('.add-remove');
+        addRemoveDiv.insertBefore(quantityDisplay, addRemoveDiv.children[1]);
+        
+        const minusBtn = card.querySelector('.add-remove button:first-child');
+        const plusBtn = card.querySelector('.add-remove button:last-child');
+        
+        minusBtn.addEventListener('click', () => updateCart(card, -1));
+        plusBtn.addEventListener('click', () => updateCart(card, 1));
+    });
+}
 
 function updateCart(card, change) {
     const productId = card.querySelector('h2').textContent;
@@ -55,15 +79,14 @@ function updateCart(card, change) {
     updateCartDisplay();
 }
 
-function changeCart(){
-    
-}
-
 function updateQuantityDisplay(card, quantity) {
-    card.querySelector('.quantity').textContent = quantity;
+    if (card.querySelector('.quantity')) {
+        card.querySelector('.quantity').textContent = quantity;
+    }
+    
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCounter.textContent = totalItems;
-    cartCounter.style.display = totalItems === 0 ? 'none' : 'flex';
+    cartCounter.textContent = totalItems > 0 ? totalItems : '';
+    cartCounter.style.display = totalItems > 0 ? 'flex' : 'none';
 }
 
 function updateCartDisplay() {
@@ -87,59 +110,86 @@ function updateCartDisplay() {
             <div class="cart-item-info">
                 <span class="cart-item-name">${item.name}</span>
                 <span class="cart-item-price">$${item.price.toFixed(2)} × ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</span>
-                <div class="add-remove">
-                        <button>
-                            <i class='bx bx-minus'></i>
-                        </button>
-                        <button>
-                            <i class='bx bx-plus'></i>
-                        </button>
-                        <button>
-                            <i class='bx bxs-trash'></i>
-                        </button>
-                    </div>
+                <div class="cart-item-controls">
+                    <button class="cart-minus"><i class='bx bx-minus'></i></button>
+                    <button class="cart-plus"><i class='bx bx-plus'></i></button>
+                    <button class="cart-remove"><i class='bx bxs-trash'></i></button>
+                </div>
             </div>
         `;
 
-        cartList.appendChild(cartItem);
+        cartItem.querySelector('.cart-minus').addEventListener('click', () => updateCartItem(item, -1));
+        cartItem.querySelector('.cart-plus').addEventListener('click', () => updateCartItem(item, 1));
+        cartItem.querySelector('.cart-remove').addEventListener('click', () => updateCartItem(item, -item.quantity));
 
+        cartList.appendChild(cartItem);
         total += item.price * item.quantity;
     });
-
 
     const totalElement = document.createElement('li');
     totalElement.className = 'cart-total';
     totalElement.textContent = `Total: $${total.toFixed(2)}`;
     cartList.appendChild(totalElement);
-
 }
 
-menu.forEach((element, index) => {
-    element.addEventListener('click', () => {
-        showPage(index);
-    });
-});
+function updateCartItem(item, change) {
+    const productCard = [...document.querySelectorAll('.product-card')].find(
+        card => card.querySelector('h2').textContent === item.id
+    );
+    
+    if (productCard) {
+        updateCart(productCard, change);
+    }
+}
 
-showPage = index => {
+function showPage(index) {
+
     menu.forEach(item => item.classList.remove('active'));
-    
     menu[index].classList.add('active');
-    
+
     pages.forEach(page => {
         setTimeout(() => {
             page.style.display = 'none';
-        }, 300);
+        }, 10);
     });
     
     setTimeout(() => {
         pages[index].style.display = 'grid';
-    }, 300);
+    }, 10);
+
+    const pageId = menu[index].dataset.li;
+    const content = asideContent[pageId];
+    const asideContentElement = document.getElementById('aside-content');
+
+    if (content) {
+        asideContentElement.style.opacity = '0';
+        
+        setTimeout(() => {
+            asideContentElement.innerHTML = `
+                <img src="${content.img}" alt="Category image">
+                <p>${content.text}</p>
+            `;
+            asideContentElement.style.opacity = '1';
+            asideContentElement.style.transition = 'opacity 0.3s ease';
+        }, 10);
+    }
 }
 
+initProductCards();
+showPage(0);
+
+menu.forEach((element, index) => {
+    element.addEventListener('click', () => showPage(index));
+});
+
 cartButton.addEventListener('click', () => {
-    setTimeout(() => {
-        cartContainer.classList.toggle('active')
-    }, 300)
+    cartContainer.classList.toggle('active');
+});
+
+langButton.addEventListener('click', () => {
+    alertBody.style.display = 'flex'
 })
 
-showPage(0);
+closeAlertButton.addEventListener('click', () => {
+    alertBody.style.display = 'none'
+})

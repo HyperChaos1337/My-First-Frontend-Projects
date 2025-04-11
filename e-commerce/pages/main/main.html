@@ -35,7 +35,7 @@
             </ol>
         </nav>
         <div id="additional-buttons">
-            <button>
+            <button id="lang-button">
                 <i class='bx bx-globe'></i>
             </button>
             <button id="cart-button">
@@ -49,23 +49,27 @@
         </div>
         <aside id="aside-bar">
             <ol>
-                <li class="page">
+                <li class="page" data-li="home">
                     <i class='bx bxs-home-alt-2'></i>
                     Home
                 </li>
-                <li class="page">
+                <li class="page" data-li="hotDrinks">
                     <i class='bx bxs-coffee-togo'></i>
                     Hot drinks
                 </li>
-                <li class="page">
+                <li class="page" data-li="coldDrinks">
                     <i class='bx bxs-cube'></i>
                     Cold drinks
                 </li>
-                <li class="page">
+                <li class="page" data-li="dishes">
                     <i class='bx bxs-baguette'></i>
                     Dishes
                 </li>
             </ol>
+            <div id="aside-content">
+                <img src="/e-commerce/assets/home-background.jpg" alt="Category image">
+                <p>Default description</p>
+            </div>
         </aside>
         <main class="cards">
             <section class="cards__type cards--home">
@@ -413,6 +417,55 @@
                 </div>
             </section>
         </main>
+        <div id="alert-body">
+            <div id="alert-window">
+                <button class="lang-button" data-greeting="Добро пожаловать!">
+                    Русский
+                </button>
+                <button class="lang-button" data-greeting="">
+                    English
+                </button>
+                <button class="lang-button" data-greeting="">
+                    Français
+                </button>
+                <button class="lang-button" data-greeting="">
+                    Deutsch
+                </button>
+                <button class="lang-button" data-greeting="">
+                    Norsk Bokmål
+                </button>
+                <button class="lang-button" data-greeting="">
+                    Svenska
+                </button>
+                <button class="lang-button" data-greeting="">
+                    Suomen
+                </button>
+                <button class="lang-button" data-greeting="">
+                    Eesti
+                </button>
+                <button class="lang-button" data-greeting="">
+                    中文
+                </button>
+                <button class="lang-button" data-greeting="">
+                    日本語
+                </button>
+                <button class="lang-button" data-greeting="">
+                    한국어
+                </button>
+                <button class="lang-button" data-greeting="">
+                    Español
+                </button>
+                <button class="lang-button" data-greeting="">
+                    Italiano
+                </button>
+                <button class="lang-button" data-greeting="">
+                    Português (PT)
+                </button>
+            </div>
+            <button id="close-alert">
+                Close Window
+            </button>
+        </div>
         <footer id="site-footer">
             <h2>No copy allowed</h2>
         </footer>
