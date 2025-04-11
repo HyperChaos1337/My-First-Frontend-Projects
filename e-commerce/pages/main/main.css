@@ -55,7 +55,6 @@ header, footer{
 }
 
 #site-header{
-    border: 1px solid black;
     grid-area: site-header;
 }
 
@@ -63,8 +62,6 @@ header, footer{
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: white;
-    border: 2px solid black;
     border-radius: 10px;
     grid-area: nav-bar;
 }
@@ -72,10 +69,8 @@ header, footer{
 #aside-bar{
     position: sticky;
     top: 80px;
-    background-color: white;
     justify-content: center;
     align-self: start;
-    border: 2px solid black;
     border-radius: 10px;
     grid-auto-rows: minmax(0, auto);
 }
@@ -89,12 +84,10 @@ header, footer{
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: white;
     display: flex;
     grid-area: additional-buttons;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
     border-radius: 10px;
     justify-self: end;
     gap: 10px;
@@ -184,7 +177,6 @@ button i{
 
 #aside-bar ol > li{
     padding: 10px;
-    border: 1px solid black;
     border-radius: 30px;
     text-align: center;
     animation-delay: 0.5s;
@@ -203,8 +195,7 @@ button i{
 
 .nav-link a{
     text-decoration: none;
-    color: black;
-    border: 2px solid black;
+    color: var(--text-light);
     border-radius: 10px;
     padding: 5px;
 }
@@ -308,12 +299,10 @@ button i{
 }
 
 #site-footer{
-    border: 1px solid black;
     grid-area: site-footer;
 }
 
 #site-header, #site-footer{
-    border: 2px solid black;
     border-radius: 10px;
     text-align: center;
 }
