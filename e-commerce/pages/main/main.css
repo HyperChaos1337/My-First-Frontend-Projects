@@ -38,7 +38,7 @@ header, footer{
 
 #site-header, #site-footer, #nav-bar, #aside-bar, #additional-buttons {
     background-color: var(--white);
-    border: 1px solid var(--mint-medium);
+    border: 2px solid var(--mint-dark);
     box-shadow: var(--shadow);
 }
 
@@ -113,8 +113,6 @@ button i{
     width: 350px;
     max-height: 60vh;
     border-radius: 10px;
-    background-color: white;
-    color: black;
     z-index: 1000;
     overflow: auto;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -127,18 +125,20 @@ button i{
 }
 
 .cart-item-controls button {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     font-size: 14px;
 }
 
 #cart-container.active{
     display: flex;
+    border: 2px solid var(--text-dark);
     animation: fadeIn 0.5s ease-in-out;
 }
 
 #cart-container ol{
     display: flex;
+    background-color: var(--white);
     font-size: 20px;
     flex-direction: column;
     list-style-type: none;
@@ -146,6 +146,7 @@ button i{
 }
 
 #cart-container ol > li{
+    background-color: inherit;
     padding: 10px;
 }
 
@@ -179,8 +180,6 @@ button i{
     padding: 10px;
     border-radius: 30px;
     text-align: center;
-    animation-delay: 0.5s;
-    transition: 200ms ease-in-out;
 }
 
 #aside-bar ol > li.active {
@@ -201,7 +200,7 @@ button i{
 }
 
 .cards{
-    border: 2px solid black;
+    border: 2px solid var(--mint-dark);
     border-radius: 10px;
     padding: 10px;
     display: grid;
@@ -213,15 +212,14 @@ button i{
     color: var(--text-dark);
     background-color: var(--white);
     border-radius: 10px;
+    padding: 10px;
     float: left;
     animation: fadeIn 0.5s ease-out forwards;
 }
 
 .cards--home .product-image{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    padding: 10px;
+    float: left;
+    width: 30%;
     float: left;
 }
 
@@ -229,6 +227,10 @@ button i{
     font-size: 20px;
     padding: 10px;
     text-align: justify;
+}
+
+.cards--home h2{
+    text-align: center;
 }
 
 .cards--hot-drinks,
@@ -315,14 +317,12 @@ button i{
 }
 
 .cart-item, .cart-total {
-    border: 2px solid var(--mint-dark);
+    background: var(--white);
 }
 
 .cart-item {
     display: flex;
     align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
 }
 
 .cart-item-image {
@@ -352,8 +352,7 @@ button i{
     padding: 15px;
     text-align: right;
     font-weight: bold;
-    border-top: 2px solid #333;
-    margin-top: 10px;
+    border-top: 2px solid var(--text-dark);
 }
 
 #cart-button {

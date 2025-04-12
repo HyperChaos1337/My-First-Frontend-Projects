@@ -34,9 +34,9 @@ header, footer{
     animation: fadeIn 0.5s ease-in-out;
 }
 
-#site-header, #site-footer, #nav-bar{
+#site-header, #site-footer, #nav-bar, #info-panel{
     background-color: var(--white);
-    border: 1px solid var(--mint-medium);
+    border: 2px solid var(--mint-dark);
     box-shadow: var(--shadow);
     border-radius: 10px;
 }
@@ -52,8 +52,7 @@ header, footer{
 
 .nav-link a{
     text-decoration: none;
-    color: black;
-    border: 2px solid black;
+    color: var(--text-light);
     border-radius: 10px;
     padding: 5px;
 }
@@ -61,6 +60,25 @@ header, footer{
 .nav-link a:hover {
     background: var(--mint-medium);
     color: var(--text-dark);
+}
+
+#info-panel{
+    padding: 10px;
+}
+
+#info-panel img{
+    float: left;
+    width: 30%;
+}
+
+#info-panel p{
+    font-size: 20px;
+    padding: 10px;
+    text-align: justify;
+}
+
+#info-panel h2{
+    text-align: center;
 }
 
 @keyframes fadeIn{
