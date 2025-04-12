@@ -74,11 +74,23 @@ header, footer{
 #info-panel p{
     font-size: 20px;
     padding: 10px;
-    text-align: justify;
+    text-align: left;
 }
 
 #info-panel h2{
     text-align: center;
+}
+
+#info-panel a{
+    text-decoration: none;
+    color: var(--text-light);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#info-panel a:hover{
+    background: var(--mint-medium);
+    color: var(--text-dark);
 }
 
 @keyframes fadeIn{
@@ -89,5 +101,13 @@ header, footer{
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 450px) {
+    #nav-bar ol{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }

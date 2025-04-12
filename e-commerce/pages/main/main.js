@@ -15,19 +15,19 @@ let cart = [];
 
 const asideContent = {
     home: {
-        img: "/e-commerce/assets/home-background.jpg",
+        img: "/e-commerce/assets/list-images/home-page.jpg",
         text: "Welcome to our cafe!"
     },
     hotDrinks: {
-        img: "/e-commerce/assets/hot-drinks-page.jpg",
+        img: "/e-commerce/assets/list-images/hot-drinks-page.jpg",
         text: "Our best hot drinks"
     },
     coldDrinks: {
-        img: "/e-commerce/assets/cold-drinks-page.jpg",
+        img: "/e-commerce/assets/list-images/cold-drinks-page.jpg",
         text: "Our best cold drinks"
     },
     dishes: {
-        img: "/e-commerce/assets/dishes-page.jpg",
+        img: "/e-commerce/assets/list-images/dishes-page.jpg",
         text: "Our best dishes"
     }
 };

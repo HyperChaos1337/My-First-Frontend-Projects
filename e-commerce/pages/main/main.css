@@ -132,7 +132,6 @@ button i{
 
 #cart-container.active{
     display: flex;
-    border: 2px solid var(--text-dark);
     animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -520,32 +519,14 @@ button, .nav-link a, #aside-bar ol > li {
         grid-gap: 10px;
     }
     #aside-bar img {
-        display: none;
+        width: 35%;
+        margin-left: 35%;
     }
     
     #aside-content p {
         padding: 10px;
         background: var(--white);
         border-radius: 8px;
-    }
-
-    .cards {
-        background: url('/e-commerce/assets/home-background.jpg') center/cover no-repeat;
-        position: relative;
-    }
-    
-    .cards::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-    
-    .cards > * {
-        position: relative;
-        z-index: 1;
     }
 
     #cart-container {
